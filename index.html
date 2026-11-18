@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Apurbo's World ❤️ For Mehu</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Galada&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #ff2a6d;
+    --secondary: #ff758c;
+    --gold: #ffd700;
+    --glass: rgba(16, 12, 28, 0.62);
+    --glass-border: rgba(255, 255, 255, 0.24);
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  body {
+    font-family: 'Hind Siliguri', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.8s ease;
+    position: relative;
+  }
+
+  /* Distinct & Vibrant Page-by-Page Mobile HD Backgrounds */
+  body.bg-1 { background: linear-gradient(160deg, #0f172a 0%, #1e293b 55%, #0f172a 100%); }
+  body.bg-2 { background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 48%, #a18cd1 100%); }
+  body.bg-3 { background: linear-gradient(145deg, #134e5e 0%, #71b280 100%); }
+  body.bg-4 { background: linear-gradient(135deg, #61045f 0%, #aa076b 100%); }
+  body.bg-5 { background: linear-gradient(135deg, #2b1055 0%, #7597de 100%); }
+  body.bg-6 { background: linear-gradient(135deg, #870000 0%, #190a05 100%); }
+  body.bg-7 { background: linear-gradient(180deg, #1b2631 0%, #2c3e50 55%, #17202a 100%); }
+  body.bg-8 { background: linear-gradient(135deg, #1f4037 0%, #99f2c8 100%); }
+  body.bg-9 { background: radial-gradient(circle at top, #090d16 0%, #131b2e 65%, #1d2b4a 100%); }
+  body.bg-10 { background: linear-gradient(135deg, #4b1248 0%, #f0c27b 100%); }
+  body.bg-11 { background: linear-gradient(135deg, #c33764 0%, #1d2671 100%); }
+  body.bg-12 { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+  body.bg-13 { background: linear-gradient(135deg, #360033 0%, #0b8793 100%); }
+  body.bg-14 { background: linear-gradient(135deg, #4a1c17 0%, #8e352e 50%, #3b0d1e 100%); }
+  body.bg-15 { background: linear-gradient(180deg, #120924 0%, #3b1847 45%, #8c2f5b 80%, #ff758c 100%); }
+
+  /* HD SVG Scenes for Page 7 & Page 15 */
+  .hd-scene {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; display: none;
+  }
+  body.bg-7 #scene-alone { display: block; }
+  body.bg-15 #scene-couple { display: block; }
+
+  /* Make container transparent on Page 15 so the full couple scene shines clearly */
+  body.bg-15 .app-container {
+    background: rgba(15, 8, 26, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  /* Floating Particles (Hidden on Page 1) */
+  #particles {
+    position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
+    display: none;
+  }
+  body:not(.bg-1) #particles { display: block; }
+  .float-item {
+    position: absolute; bottom: -40px; font-size: 18px; opacity: 0.7;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  }
+
+  .app-container {
+    position: relative; z-index: 2;
+    width: 93%; max-width: 420px;
+    min-height: 83vh;
+    background: var(--glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    padding: 22px 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.48);
+    display: flex; flex-direction: column; justify-content: space-between;
+    text-align: center;
+    margin: 14px auto;
+    transition: background 0.6s ease;
+  }
+
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 10px;
+  }
+  .kitty-badge {
+    background: rgba(255,255,255,0.16); padding: 4px 12px; border-radius: 20px;
+    font-weight: 600; display: inline-flex; align-items: center; gap: 5px;
+  }
+  .music-toggle {
+    background: rgba(255,255,255,0.16); border: none; color: #fff;
+    padding: 4px 10px; border-radius: 16px; font-size: 12px; cursor: pointer;
+  }
+  .progress-wrap {
+    width: 100%; height: 6px; background: rgba(255,255,255,0.16);
+    border-radius: 10px; overflow: hidden; margin-bottom: 12px;
+  }
+  .progress-bar {
+    height: 100%; width: 6.66%;
+    background: linear-gradient(90deg, #ff758c, #ffd700);
+    transition: width 0.5s ease;
+  }
+
+  .page { display: none; animation: fadeIn 0.5s ease; flex-grow: 1; flex-direction: column; justify-content: center; }
+  .page.active { display: flex; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Page 1 Biometric Fingerprint Scanner */
+  .fp-scanner {
+    width: 116px; height: 116px; margin: 18px auto;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    display: flex; justify-content: center; align-items: center;
+    position: relative; overflow: hidden;
+    cursor: pointer; user-select: none;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .fp-scanner.scanning {
+    transform: scale(1.06);
+    border-color: #ffd700;
+    box-shadow: 0 0 28px rgba(255, 42, 109, 0.55);
+  }
+  .scan-beam {
+    position: absolute; left: 0; top: 0; width: 100%; height: 4px;
+    background: linear-gradient(90deg, transparent, #ffd700, #ff2a6d, transparent);
+    box-shadow: 0 0 12px #ffd700;
+    display: none;
+  }
+  .fp-scanner.scanning .scan-beam {
+    display: block;
+    animation: beamMove 1s infinite alternate ease-in-out;
+  }
+  @keyframes beamMove { 0% { top: 10%; } 100% { top: 88%; } }
+
+  /* Cute Character Animations */
+  .char-anim {
+    font-size: 44px; margin: 4px auto 10px; display: inline-block;
+    filter: drop-shadow(0 5px 12px rgba(0,0,0,0.35));
+  }
+  .anim-bounce { animation: catBounce 1.8s infinite ease-in-out; }
+  .anim-pulse { animation: heartPulse 1.6s infinite ease-in-out; }
+  .anim-sway { animation: catSway 2.4s infinite ease-in-out; }
+  .anim-float { animation: slowFloat 3s infinite ease-in-out; }
+
+  @keyframes catBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px) scale(1.05); } }
+  @keyframes heartPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.13); } }
+  @keyframes catSway { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+  @keyframes slowFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+  .vintage-title {
+    font-family: 'Galada', cursive;
+    font-size: 27px; line-height: 1.35;
+    color: #fff; text-shadow: 0 3px 12px rgba(0,0,0,0.45);
+    margin-bottom: 10px;
+  }
+  .sub-text {
+    font-size: 15.5px; line-height: 1.65; color: rgba(255,255,255,0.94);
+    margin-bottom: 15px;
+  }
+
+  .btn {
+    background: linear-gradient(135deg, #ff2a6d, #ff758c);
+    color: #fff; border: none; padding: 13px 22px;
+    border-radius: 50px; font-size: 16px; font-weight: 600;
+    font-family: 'Hind Siliguri', sans-serif;
+    cursor: pointer; box-shadow: 0 8px 20px rgba(255,42,109,0.38);
+    transition: transform 0.2s; margin: 6px 0; width: 100%;
+  }
+  .btn:active { transform: scale(0.96); }
+  .btn-opt {
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.3);
+    text-align: center; padding: 12px 16px; border-radius: 16px;
+    margin: 6px 0; font-size: 15.5px; color: #fff; cursor: pointer;
+    transition: all 0.25s; font-family: 'Hind Siliguri', sans-serif; width: 100%;
+  }
+  .btn-opt:hover { background: linear-gradient(135deg, #ff2a6d, #ff5e7e); border-color: #ffd700; }
+
+  /* Game 1: Shy Heart Arena */
+  .shy-arena {
+    position: relative; width: 100%; height: 205px;
+    background: rgba(0,0,0,0.25); border-radius: 20px;
+    border: 1px dashed rgba(255,255,255,0.3);
+    margin: 10px 0; overflow: hidden;
+  }
+  .shy-heart {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 46px; cursor: pointer;
+    transition: top 0.25s ease, left 0.25s ease, transform 0.3s ease;
+    user-select: none;
+  }
+
+  /* Game 2: Basket Catch Canvas */
+  .catch-wrap {
+    position: relative; width: 100%; height: 235px;
+    background: rgba(0,0,0,0.32); border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.25);
+    overflow: hidden; margin: 8px 0; touch-action: none;
+  }
+  #catchCanvas { width: 100%; height: 100%; display: block; }
+
+  /* Game 3: Easy Maze Grid */
+  .maze-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    gap: 6px; max-width: 275px; margin: 8px auto;
+    background: rgba(0,0,0,0.28); padding: 10px; border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .maze-cell {
+    aspect-ratio: 1; border-radius: 10px;
+    background: rgba(255,255,255,0.12);
+    display: flex; justify-content: center; align-items: center;
+    font-size: 22px; flex-direction: column;
+  }
+  .maze-cell.obs {
+    background: rgba(255, 30, 86, 0.35);
+    border: 1px solid rgba(255,100,130,0.5);
+    font-size: 10.5px; line-height: 1.1; font-weight: 600;
+  }
+  .dpad {
+    display: grid; grid-template-columns: repeat(3, 56px);
+    gap: 6px; justify-content: center; margin-top: 8px;
+  }
+  .dpad button {
+    height: 44px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.18); color: #fff; font-size: 20px; cursor: pointer;
+  }
+  .dpad button:active { background: #ff2a6d; }
+
+  /* Original Wax-Sealed Vintage Envelope & Old-Era Handwritten Letter (Page 14) */
+  .vintage-envelope {
+    position: relative;
+    width: 100%; max-width: 310px; height: 185px;
+    margin: 14px auto;
+    background: linear-gradient(145deg, #f3e5ab, #e6cc80);
+    border-radius: 14px;
+    box-shadow: 0 14px 30px rgba(0,0,0,0.45);
+    cursor: pointer; overflow: hidden;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    border: 2px solid #c5a059;
+    transition: transform 0.3s ease;
+  }
+  .vintage-envelope:active { transform: scale(0.97); }
+  .env-flap {
+    position: absolute; top: 0; left: 0; width: 100%; height: 95px;
+    background: linear-gradient(180deg, #d4af37, #e6cc80);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+  }
+  .wax-seal {
+    position: relative; z-index: 2;
+    width: 56px; height: 56px;
+    background: radial-gradient(circle at 30% 30%, #d90429, #8d0801);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.45), inset 0 0 8px rgba(255,255,255,0.3);
+    border: 2px dashed rgba(255,215,0,0.5);
+    margin-top: 12px;
+  }
+  .parchment-letter {
+    background: linear-gradient(180deg, #fdf8e7, #f4e4bc);
+    color: #2c1306;
+    padding: 18px 16px;
+    border-radius: 14px;
+    border: 2px solid #c59b27;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    font-family: 'Galada', cursive;
+    font-size: 18.5px;
+    line-height: 1.72;
+    text-align: left;
+    max-height: 255px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+    animation: unfoldLetter 0.55s ease;
+  }
+  @keyframes unfoldLetter {
+    from { opacity: 0; transform: scaleY(0.75) translateY(-10px); }
+    to { opacity: 1; transform: scaleY(1) translateY(0); }
+  }
+
+  /* Page 15 Large Prominent Text in Front of Couple */
+  .always-with-you-hero {
+    font-family: 'Dancing Script', cursive;
+    font-size: 38px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 4px 18px rgba(255, 42, 109, 0.95), 0 0 30px rgba(255, 215, 0, 0.8);
+    transform: rotate(-4deg);
+    display: inline-block;
+    padding: 8px 14px;
+    line-height: 1.25;
+  }
+</style>
+</head>
+<body class="bg-1">
+
+<!-- HD SVG Background 1: Page 7 Melancholic Rainy Dusk -->
+<svg id="scene-alone" class="hd-scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="moonGlow" cx="75%" cy="22%" r="35%">
+      <stop offset="0%" stop-color="#a9cce3" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#1c2833" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="800" fill="url(#moonGlow)"/>
+  <circle cx="300" cy="175" r="34" fill="#d6eaf8" opacity="0.28"/>
+  <path d="M0,650 Q120,610 240,660 T400,640 L400,800 L0,800 Z" fill="#0e151c" opacity="0.75"/>
+  <line x1="70" y1="120" x2="55" y2="220" stroke="#85c1e9" stroke-width="1.2" opacity="0.25"/>
+  <line x1="160" y1="80" x2="145" y2="190" stroke="#85c1e9" stroke-width="1.2" opacity="0.2"/>
+  <line x1="250" y1="240" x2="235" y2="350" stroke="#85c1e9" stroke-width="1.2" opacity="0.22"/>
+</svg>
+
+<!-- HD SVG Background 2: Page 15 Large Clear Boy & Girl Standing Together -->
+<svg id="scene-couple" class="hd-scene" viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="sunsetMoon" cx="50%" cy="46%" r="45%">
+      <stop offset="0%" stop-color="#ffd166" stop-opacity="0.7"/>
+      <stop offset="45%" stop-color="#ff758c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#120924" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="400" height="800" fill="url(#sunsetMoon)"/>
+  <!-- Glowing Moon / Sunset Disc Behind Couple -->
+  <circle cx="200" cy="370" r="135" fill="#ffe5ec" opacity="0.22"/>
+  <circle cx="200" cy="370" r="95" fill="#ffd166" opacity="0.25"/>
+  <!-- Stars -->
+  <circle cx="70" cy="130" r="2.5" fill="#fff" opacity="0.8"/>
+  <circle cx="330" cy="150" r="2.5" fill="#fff" opacity="0.8"/>
+  <circle cx="110" cy="210" r="2" fill="#ffd700" opacity="0.8"/>
+  <circle cx="295" cy="225" r="2" fill="#ffd700" opacity="0.8"/>
+  <!-- Ground Hill -->
+  <path d="M0,620 Q200,565 400,620 L400,800 L0,800 Z" fill="#0d0618"/>
+  <!-- Large Boy Silhouette (Left) -->
+  <circle cx="164" cy="400" r="22" fill="#0d0618"/>
+  <path d="M134,585 L142,434 Q164,424 186,434 L194,585 Z" fill="#0d0618"/>
+  <!-- Large Girl Silhouette (Right) -->
+  <circle cx="236" cy="412" r="20" fill="#0d0618"/>
+  <!-- Long Flowing Hair -->
+  <path d="M220,406 Q254,404 262,465 Q246,452 232,446 Z" fill="#0d0618"/>
+  <!-- Dress Silhouette -->
+  <path d="M212,585 L220,444 Q236,435 252,444 L268,585 Z" fill="#0d0618"/>
+  <!-- Holding Hands Together -->
+  <path d="M184,475 Q200,488 218,475" stroke="#0d0618" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Glowing Heart Above Couple -->
+  <text x="186" y="352" font-size="28" fill="#ff2a6d">❤️</text>
+</svg>
+
+<div id="particles"></div>
+
+<div class="app-container">
+  <div>
+    <div class="top-bar">
+      <span class="kitty-badge">🐱 Mehu's World</span>
+      <button class="music-toggle" id="musicBtn" onclick="toggleMusic()">🔇 Music</button>
+      <span id="pageIndicator">১ / ১৫</span>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  </div>
+<!-- PAGE 1: Clean Standard Biometric Fingerprint Unlock -->
+  <div class="page active" id="page1">
+    <h1 class="vintage-title" style="font-size:28px;">স্বাগতম, মেহু</h1>
+    <p class="sub-text">অপূর্বর তৈরি এই ছোট্ট ওয়ার্ল্ডে তোমাকে স্বাগতম। এখানে ঢুকতে নিচের ফিঙ্গারপ্রিন্টে ২ সেকেন্ড চেপে ধরো...</p>
+    <div class="fp-scanner" id="fpBtn"
+         oncontextmenu="return false;"
+         onmousedown="startScan(event)" ontouchstart="startScan(event)"
+         onmouseup="stopScan()" onmouseleave="stopScan()" ontouchend="stopScan()">
+      <div class="scan-beam"></div>
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ff758c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+        <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+        <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+        <path d="M2 12a10 10 0 0 1 18-6"/>
+        <path d="M2 16h.01"/>
+        <path d="M21.8 16c.2-2 .131-5.354 0-6"/>
+        <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+        <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+        <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+      </svg>
+    </div>
+    <p id="fpStatus" style="font-size:14.5px; color:#ffd700; font-weight:500;">আঙুল চেপে ধরে আনলক করো</p>
+  </div>
+
+  <!-- PAGE 2: Welcome Screen ("Until I Found You" Tune Starts Here) -->
+  <div class="page" id="page2">
+    <div class="char-anim anim-bounce">🐱💖🌸</div>
+    <h2 class="vintage-title">অপূর্বর পৃথিবীতে তোমাকে স্বাগতম</h2>
+    <p class="sub-text">মেহু, তুমি তোমার মুখের এক চিলতে হাসির জন্য তৈরি তো? আজকের পুরো আয়োজনটা শুধুই তোমার জন্য!</p>
+    <button class="btn" onclick="nextPage()">চলো শুরু করি ✨</button>
+  </div>
+
+  <!-- PAGE 3: Excited to Meet Question -->
+  <div class="page" id="page3">
+    <div class="char-anim anim-sway">😺💌</div>
+    <h2 class="vintage-title">একটা ছোট্ট প্রশ্ন!</h2>
+    <p class="sub-text">তুমি কি এক্সাইটেড অপূর্বর সাথে দেখা করার জন্য?</p>
+    <button class="btn-opt" onclick="saveAns('দেখা করার এক্সাইটমেন্ট', 'হ্যাঁ, অনেক বেশি এক্সাইটেড! 😍'); nextPage()">😍 হ্যাঁ, অনেক বেশি এক্সাইটেড!</button>
+    <button class="btn-opt" onclick="saveAns('দেখা করার এক্সাইটমেন্ট', 'একটু লজ্জা লাগছে 🙈'); nextPage()">🙈 একটু লজ্জা লাগছে, তবুও হ্যাঁ!</button>
+    <button class="btn-opt" onclick="saveAns('দেখা করার এক্সাইটমেন্ট', 'অপেক্ষায় আছি ✨'); nextPage()">✨ অধীর আগ্রহে অপেক্ষায় আছি!</button>
+  </div>
+
+  <!-- PAGE 4: Original Eye Contact Challenge -->
+  <div class="page" id="page4">
+    <div class="char-anim anim-pulse">👀☕</div>
+    <h2 class="vintage-title">চোখের দিকে তাকানোর চ্যালেঞ্জ!</h2>
+    <p class="sub-text">সামনাসামনি দেখা হলে টানা ৫ সেকেন্ড অপূর্বর চোখের দিকে তাকিয়ে থাকতে পারবে? যে আগে চোখ সরাবে, চায়ের বিল কিন্তু তাকেই দিতে হবে! 😉</p>
+    <div style="background:rgba(0,0,0,0.25); padding:14px; border-radius:18px; margin:10px 0;">
+      <p id="eyeCountText" style="font-size:19px; font-weight:700; color:#ffd700;">প্রস্তুত? নিচের বাটনে চাপ দাও!</p>
+    </div>
+    <button class="btn" id="eyeStartBtn" onclick="startEyeChallenge()">চ্যালেঞ্জ অ্যাকসেপ্ট করলাম 😎☕</button>
+    <p id="eyeResultMsg" style="color:#ffd700; font-size:15px; margin-top:8px;"></p>
+  </div>
+
+  <!-- PAGE 5: GAME 1 - Catch the Shy Heart -->
+  <div class="page" id="page5">
+    <h2 class="vintage-title">লাজুক হার্টকে ধরো! 🙈❤️</h2>
+    <p class="sub-text" style="margin-bottom:6px;">হার্টটা বলছে: <strong>"আমাকে ধরতে পারলে একটা সিক্রেট বলবো!"</strong></p>
+    <div class="shy-arena" id="shyArena">
+      <div class="shy-heart" id="shyHeart" onclick="tapShyHeart()">🙈❤️</div>
+    </div>
+    <p id="shyResult" style="font-size:15.5px; font-weight:600; color:#ffd700; min-height:46px;"></p>
+    <button class="btn" id="shyNextBtn" style="display:none;" onclick="nextPage()">পরের ধাপে যাই ➡️</button>
+  </div>
+
+  <!-- PAGE 6: Original Math Love Trap -->
+  <div class="page" id="page6">
+    <div class="char-anim anim-sway">🐱🧮</div>
+    <h2 class="vintage-title">একটা সহজ অঙ্ক! 💖</h2>
+    <p class="sub-text">বলো তো, ভালোবাসার হিসাবে <strong>১ + ১ = কত হয়?</strong></p>
+    <button class="btn-opt" onclick="wrongMath(this)">২ হয় (সাধারণ অঙ্ক)</button>
+    <button class="btn-opt" onclick="wrongMath(this)">১১ হয় (দুষ্টু বুদ্ধি)</button>
+    <button class="btn-opt" onclick="rightMath()">❤️ ১ জন মেহু + ১ জন অপূর্ব = আমরা দুজন!</button>
+    <p id="mathMsg" style="color:#ffd700; font-size:15px; margin-top:8px;"></p>
+  </div>
+
+  <!-- PAGE 7: Emotional Page -->
+  <div class="page" id="page7">
+    <div class="char-anim anim-float">🥀🌧️</div>
+    <h2 class="vintage-title">অব্যক্ত কিছু কথা...</h2>
+    <p class="sub-text" style="background:rgba(0,0,0,0.3); padding:16px; border-radius:18px; border:1px solid rgba(255,255,255,0.15);">
+      জানো মেহু, অপূর্ব এখনো অনেক কিছু চাইলেও করতে পারে না, আবার মনের ভেতরের অনেক কথা চাইলেও মুখ ফুটে বলতে পারে না... কিন্তু নীরবে তোমাকে ঠিক ততটাই ভালোবাসে।
+    </p>
+    <button class="btn" onclick="nextPage()">সামনে এগিয়ে যাই 🤍</button>
+  </div>
+
+  <!-- PAGE 8: GAME 2 - Basket Catch Game -->
+  <div class="page" id="page8">
+    <h2 class="vintage-title">ভালোবাসা কুড়িয়ে নাও! 🌹🧺</h2>
+    <p class="sub-text" style="margin-bottom:4px; font-size:14.5px;">আঙুল দিয়ে ঝুড়িটা ডানে-বামে সরিয়ে গোলাপ ও হার্ট ধরো (১০ পয়েন্ট), রাগ (😡) এড়িয়ে চলো!</p>
+    <div style="font-weight:700; color:#ffd700; font-size:16px;">পয়েন্ট: <span id="catchScore">0</span> / 10</div>
+    <div class="catch-wrap" id="catchWrap">
+      <canvas id="catchCanvas"></canvas>
+    </div>
+    <p id="catchWinMsg" style="color:#ffd700; font-weight:600; font-size:15px; min-height:44px;"></p>
+    <button class="btn" id="catchNextBtn" style="display:none;" onclick="nextPage()">দারুণ! সামনে আগাই ➡️</button>
+  </div>
+<!-- PAGE 9: Starry Heart Connect ("Only for you") -->
+  <div class="page" id="page9">
+    <h2 class="vintage-title">আকাশের তারায় ভালোবাসা ✨</h2>
+    <p class="sub-text" style="margin-bottom:6px;">প্রতিটি জ্বলজ্বলে তারায় ট্যাপ করে হার্টটি সম্পূর্ণ করো...</p>
+    <svg viewBox="0 0 300 210" style="width:100%; max-width:300px; margin:0 auto; background:rgba(0,0,0,0.3); border-radius:20px; padding:8px;">
+      <path d="M150,175 L65,95 L95,45 L150,80 L205,45 L235,95 Z" fill="none" stroke="rgba(255,215,0,0.3)" stroke-width="2" stroke-dasharray="5"/>
+      <path id="heartFill" d="M150,175 L65,95 L95,45 L150,80 L205,45 L235,95 Z" fill="rgba(255,42,109,0)" stroke="#ff2a6d" stroke-width="0" style="transition:0.6s;"/>
+      <circle cx="150" cy="175" r="11" fill="#ffd700" style="cursor:pointer" onclick="tapStar(this)"/>
+      <circle cx="65" cy="95" r="11" fill="#ff758c" style="cursor:pointer" onclick="tapStar(this)"/>
+      <circle cx="95" cy="45" r="11" fill="#ffd700" style="cursor:pointer" onclick="tapStar(this)"/>
+      <circle cx="150" cy="80" r="11" fill="#ff758c" style="cursor:pointer" onclick="tapStar(this)"/>
+      <circle cx="205" cy="45" r="11" fill="#ffd700" style="cursor:pointer" onclick="tapStar(this)"/>
+      <circle cx="235" cy="95" r="11" fill="#ff758c" style="cursor:pointer" onclick="tapStar(this)"/>
+    </svg>
+    <p id="starResult" style="min-height:38px; color:#ffd700; font-size:19px; font-weight:700; margin-top:10px;">সবগুলো তারায় টাচ করো ⭐</p>
+    <button class="btn" id="starNextBtn" style="display:none;" onclick="nextPage()">পরের পেজে যাই 🌙</button>
+  </div>
+
+  <!-- PAGE 10: Simple Question ("কখনো হঠাৎ করে চলে যাবা না তুমি?") -->
+  <div class="page" id="page10">
+    <div class="char-anim anim-pulse">🌹❤️</div>
+    <h2 class="vintage-title">কখনো হঠাৎ করে চলে যাবা না তুমি?</h2>
+    <p style="color:#ffd700; font-weight:600; font-size:16px; margin-bottom:16px;">— তোমার অপূর্ব ❤️</p>
+    <button class="btn-opt" onclick="saveAns('চলে না যাওয়ার প্রমিস', 'কখনোই না, সবসময় পাশে থাকবো ❤️'); nextPage()">❤️ কখনোই না, সবসময় পাশে থাকবো</button>
+    <button class="btn-opt" onclick="saveAns('চলে না যাওয়ার প্রমিস', 'প্রমিস, ছেড়ে যাবো না 🤝'); nextPage()">🤝 প্রমিস, কখনো ছেড়ে যাবো না</button>
+  </div>
+
+  <!-- PAGE 11: My Dear Mehu Note -->
+  <div class="page" id="page11">
+    <div class="char-anim anim-bounce">🐱💕🌹</div>
+    <h2 class="vintage-title">আমার প্রিয় "মেহু"</h2>
+    <p class="sub-text">এই নামটার সাথে আমার অনেক মায়া জড়িয়ে আছে। পৃথিবীর সব খুশি যেন সবসময় তোমাকে ঘিরে রাখে। চলো আরেকটা মজার গেম খেলি!</p>
+    <button class="btn" onclick="nextPage()">গেম শুরু করি 🎮❤️</button>
+  </div>
+
+  <!-- PAGE 12: GAME 3 - Guide Apurbo to Mehu -->
+  <div class="page" id="page12">
+    <h2 class="vintage-title">অপূর্বকে মেহুর কাছে পৌঁছে দাও! 🏃‍♂️❤️</h2>
+    <p class="sub-text" style="margin-bottom:4px; font-size:14px;">রাগ, অভিমান আর ব্যস্ততা এড়িয়ে নিচের বাটনে চেপে অপূর্বকে (👦) মেহুর (👧) কাছে নিয়ে যাও!</p>
+    <div class="maze-grid" id="mazeGrid"></div>
+    <div class="dpad" id="mazeControls">
+      <div></div><button onclick="movePlayer(-1,0)">⬆️</button><div></div>
+      <button onclick="movePlayer(0,-1)">⬅️</button><button onclick="movePlayer(1,0)">⬇️</button><button onclick="movePlayer(0,1)">➡️</button>
+    </div>
+    <p id="mazeMsg" style="color:#ffd700; font-weight:600; font-size:15px; margin-top:6px; min-height:40px;"></p>
+    <button class="btn" id="mazeNextBtn" style="display:none;" onclick="nextPage()">এগিয়ে যাই 💖</button>
+  </div>
+
+  <!-- PAGE 13: Original Trust Slider -->
+  <div class="page" id="page13">
+    <div class="char-anim anim-sway">🐱🤝❤️</div>
+    <h2 class="vintage-title">অপূর্বকে তুমি কতটুকু বিশ্বাস করো?</h2>
+    <p class="sub-text">নিচের স্লাইডারটা টেনে তোমার বিশ্বাসের পরিমাণ দেখাও...</p>
+    <input type="range" id="trustRange" min="0" max="100" value="50" oninput="updateTrust(this.value)" style="width:100%; accent-color:#ffd700; margin:14px 0;">
+    <p id="trustText" style="font-size:18px; color:#ffd700; font-weight:700;">বিশ্বাস: ৫০% ❤️</p>
+    <button class="btn" style="margin-top:16px;" onclick="saveAns('বিশ্বাসের পরিমাণ', document.getElementById('trustText').innerText); nextPage()">কনফার্ম করলাম ✨</button>
+  </div>
+
+  <!-- PAGE 14: Old-Era Handwritten Letter + Comment Prompt + Done Button -->
+  <div class="page" id="page14">
+    <h2 class="vintage-title">গোপন চিঠি 💌</h2>
+
+    <div id="envWrapper">
+      <div class="vintage-envelope" onclick="openWaxEnvelope()">
+        <div class="env-flap"></div>
+        <div class="wax-seal">❤️</div>
+        <p style="color:#4a2c0f; font-weight:700; font-size:15px; margin-top:14px; z-index:2;">For My Dear Mehu</p>
+        <p style="color:#6e471b; font-size:12.5px; z-index:2;">সিল ভাঙতে এখানে ট্যাপ করো ✨</p>
+      </div>
+    </div>
+
+    <div id="openedLetterArea" style="display:none;">
+      <div class="parchment-letter">
+        প্রিয় মেহু,<br>
+        জানি না ঠিক কবে থেকে, তবে আজ আমি তোমাকে নিজের চেয়েও বেশি বিশ্বাস করে ফেলেছি। আমার প্রতিটা মুহূর্ত, প্রতিটা ভালো লাগার সাথে শুধু তোমার নামটাই জড়িয়ে গেছে। তোমাকে এতটা ভালোবেসে ফেলেছি যে, তোমাকে ছাড়া এখন আর কিছুই ভাবতে পারি না। তোমার হাসি আর ছোট্ট অভিমানগুলো নিয়ে সারাজীবন ঠিক এভাবেই আমার পাশে থেকো।<br>
+        <span style="display:block; margin-top:6px; text-align:right;">— ইতি, তোমার অপূর্ব ❤️</span>
+      </div>
+
+      <p style="font-size:15px; color:#ffd700; font-weight:600; margin-bottom:7px; text-align:center;">
+        মেহু, তুমি অপূর্বর উদ্দেশ্যে কিছু বলো... 💬❤️
+      </p>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <input type="text" id="mehuComment" placeholder="অপূর্বকে তোমার মনের কথা লেখো..." style="flex:1; padding:12px 14px; border-radius:14px; border:none; font-family:'Hind Siliguri'; font-size:15px;">
+        <button class="btn" id="doneBtn" onclick="finishJourney()" style="width:auto; padding:12px 20px; margin:0;">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 15: Grand Finale (Full Couple Silhouette + Prominent Front Text) -->
+  <div class="page" id="page15">
+    <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%;">
+      <div class="always-with-you-hero">Apurbo Always With You ❤️</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentPage = 1;
+  const totalPages = 15;
+  let userAnswers = [];
+
+  function saveAns(q, a) {
+    userAnswers.push(`${q}: ${a}`);
+  }
+
+  // Instrumental Melody of "Until I Found You" (Moderate Soft Piano-Harp Tune)
+  let audioCtx = null;
+  let musicPlaying = false;
+  let musicTimer = null;
+
+  function startSoftMusic() {
+    if (musicPlaying) return;
+    try {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      musicPlaying = true;
+      document.getElementById('musicBtn').innerText = '🔊 Tune';
+      // Iconic romantic waltz phrasing of "Until I Found You" (Bb Major / C Major transposed softly)
+      const melody = [
+        { f: 261.63, d: 0.45 }, { f: 329.63, d: 0.45 }, { f: 392.00, d: 0.9 },
+        { f: 440.00, d: 0.45 }, { f: 392.00, d: 0.45 }, { f: 329.63, d: 0.9 },
+        { f: 349.23, d: 0.45 }, { f: 440.00, d: 0.45 }, { f: 523.25, d: 0.9 },
+        { f: 493.88, d: 0.45 }, { f: 440.00, d: 0.45 }, { f: 392.00, d: 1.1 },
+        { f: 329.63, d: 0.45 }, { f: 349.23, d: 0.45 }, { f: 392.00, d: 0.9 },
+        { f: 329.63, d: 0.45 }, { f: 293.66, d: 0.45 }, { f: 261.63, d: 1.2 }
+      ];
+      let idx = 0;
+
+      function playNextNote() {
+        if (!musicPlaying || !audioCtx) return;
+        const note = melody[idx % melody.length];
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle'; // Warm soft piano-harp tone
+        osc.frequency.setValueAtTime(note.f, audioCtx.currentTime);
+
+        gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 0.08); // Moderate volume
+        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + note.d + 0.35);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + note.d + 0.4);
+
+        idx++;
+        musicTimer = setTimeout(playNextNote, note.d * 1000);
+      }
+      playNextNote();
+    } catch (e) {}
+  }
+
+  function toggleMusic() {
+    if (!musicPlaying) {
+      startSoftMusic();
+    } else {
+      musicPlaying = false;
+      clearTimeout(musicTimer);
+      document.getElementById('musicBtn').innerText = '🔇 Muted';
+    }
+  }
+
+  // Floating Particles
+  const pContainer = document.getElementById('particles');
+  const icons = ['✨', '🌸', '❤️', '🐾'];
+  for (let i = 0; i < 14; i++) {
+    let el = document.createElement('div');
+    el.className = 'float-item';
+    el.innerText = icons[i % icons.length];
+    el.style.left = Math.random() * 100 + '%';
+    el.style.animationDuration = (7 + Math.random() * 7) + 's';
+    el.style.animationDelay = (Math.random() * 5) + 's';
+    pContainer.appendChild(el);
+  }
+
+  function nextPage() {
+    if (currentPage >= totalPages) return;
+    document.getElementById('page' + currentPage).classList.remove('active');
+    currentPage++;
+    document.getElementById('page' + currentPage).classList.add('active');
+    document.body.className = 'bg-' + currentPage;
+    document.getElementById('pageIndicator').innerText = `${currentPage} / ${totalPages}`;
+    document.getElementById('progressBar').style.width = ((currentPage / totalPages) * 100) + '%';
+
+    if (currentPage === 2) startSoftMusic();
+    if (currentPage === 8) initCatchGame();
+    if (currentPage === 12) initMazeGame();
+  }
+
+  // Page 1: Fingerprint 2-Second Hold
+  let scanTimer = null;
+  let unlocked = false;
+
+  function startScan(e) {
+    if (e && e.cancelable) e.preventDefault();
+    if (unlocked) return;
+    const box = document.getElementById('fpBtn');
+    box.classList.add('scanning');
+    document.getElementById('fpStatus').innerText = "স্ক্যান হচ্ছে... ২ সেকেন্ড ধরে রাখো";
+    scanTimer = setTimeout(() => {
+      unlocked = true;
+      document.getElementById('fpStatus').innerText = "আনলক সফল! ✨";
+      setTimeout(nextPage, 350);
+    }, 1800);
+  }
+
+  function stopScan() {
+    if (unlocked) return;
+    clearTimeout(scanTimer);
+    document.getElementById('fpBtn').classList.remove('scanning');
+    document.getElementById('fpStatus').innerText = "আঙুল চেপে ধরে আনলক করো";
+  }
+
+  // Page 4: Eye Contact Challenge
+  function startEyeChallenge() {
+    const btn = document.getElementById('eyeStartBtn');
+    btn.disabled = true;
+    let sec = 5;
+    document.getElementById('eyeCountText').innerText = `তাকিয়ে থাকো: ${sec} সেকেন্ড 👀`;
+    const timer = setInterval(() => {
+      sec--;
+      if (sec > 0) {
+        document.getElementById('eyeCountText').innerText = `তাকিয়ে থাকো: ${sec} সেকেন্ড 👀`;
+      } else {
+        clearInterval(timer);
+        document.getElementById('eyeCountText').innerText = "সময় শেষ! তুমি জিতে গেছো! ☕🎉";
+        document.getElementById('eyeResultMsg').innerText = "চায়ের বিল এবার অপূর্বই দেবে! 😉";
+        saveAns('চোখের চ্যালেঞ্জ', '৫ সেকেন্ড তাকিয়ে থেকে জিতেছে ☕');
+        setTimeout(nextPage, 1300);
+      }
+    }, 1000);
+  }
+
+  // Page 5: GAME 1 - Catch the Shy Heart
+  let shyTaps = 0;
+  function tapShyHeart() {
+    const heart = document.getElementById('shyHeart');
+    const arena = document.getElementById('shyArena');
+    shyTaps++;
+    if (shyTaps < 4) {
+      const maxX = arena.clientWidth - 65;
+      const maxY = arena.clientHeight - 65;
+      heart.style.left = (15 + Math.random() * maxX) + 'px';
+      heart.style.top = (15 + Math.random() * maxY) + 'px';
+      heart.style.transform = 'none';
+      const teases = ["উহু! ধরতে পারলে না তো! 😜", "আরেকটু চেষ্টা করো মেহু! 🙈", "এই যে আমি এখানে! 🏃‍♂️💨"];
+      document.getElementById('shyResult').innerText = teases[shyTaps - 1];
+    } else {
+      heart.style.left = '50%';
+      heart.style.top = '50%';
+      heart.style.transform = 'translate(-50%, -50%) scale(1.65)';
+      heart.innerText = '💖';
+      document.getElementById('shyResult').innerText = 'ঠিক এভাবেই তুমি আমাকে অনেক বিশ্বাসের সাথে ধরেছো ❤️';
+      document.getElementById('shyNextBtn').style.display = 'block';
+      saveAns('লাজুক হার্ট গেম', '৪র্থ বারে হার্ট ধরেছে ❤️');
+    }
+  }
+
+  // Page 6: Math Trap
+  function wrongMath(btn) {
+    btn.style.background = 'rgba(255,0,0,0.4)';
+    document.getElementById('mathMsg').innerText = "উহু! ভালোবাসার অঙ্কটা আবার দেখো 😜";
+  }
+  function rightMath() {
+    document.getElementById('mathMsg').innerText = "একদম পারফেক্ট! ১ + ১ = মেহু ও অপূর্ব ❤️";
+    saveAns('ভালোবাসার অঙ্ক', '১ জন মেহু + ১ জন অপূর্ব');
+    setTimeout(nextPage, 900);
+  }
+
+  // Page 8: GAME 2 - Basket Catch Game
+  let catchRunning = false;
+  function initCatchGame() {
+    if (catchRunning) return;
+    catchRunning = true;
+    const canvas = document.getElementById('catchCanvas');
+    const wrap = document.getElementById('catchWrap');
+    canvas.width = wrap.clientWidth;
+    canvas.height = wrap.clientHeight;
+    const ctx = canvas.getContext('2d');
+
+    let basketX = canvas.width / 2 - 28;
+    const basketW = 56;
+    let score = 0;
+    let items = [];
+    let won = false;
+
+    function moveBasket(clientX) {
+      const rect = canvas.getBoundingClientRect();
+      let x = clientX - rect.left - basketW / 2;
+      if (x < 0) x = 0;
+      if (x > canvas.width - basketW) x = canvas.width - basketW;
+      basketX = x;
+    }
+    canvas.addEventListener('touchmove', e => { e.preventDefault(); moveBasket(e.touches[0].clientX); }, { passive: false });
+    canvas.addEventListener('mousemove', e => moveBasket(e.clientX));
+
+    const spawner = setInterval(() => {
+      if (won) return;
+      const pool = ['🌹', '❤️', '🌹', '❤️', '😡'];
+      const icon = pool[Math.floor(Math.random() * pool.length)];
+      items.push({ x: 20 + Math.random() * (canvas.width - 40), y: -20, icon, speed: 2.3 + Math.random() * 1.4 });
+    }, 650);
+
+    function loop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '34px serif';
+      ctx.fillText('🧺❤️', basketX, canvas.height - 10);
+
+      for (let i = items.length - 1; i >= 0; i--) {
+        let it = items[i];
+        it.y += it.speed;
+        ctx.font = '26px serif';
+        ctx.fillText(it.icon, it.x, it.y);
+
+        if (it.y > canvas.height - 42 && it.y < canvas.height - 5 && it.x > basketX - 18 && it.x < basketX + basketW + 10) {
+          if (it.icon === '😡') {
+            score = Math.max(0, score - 1);
+          } else {
+            score++;
+          }
+          document.getElementById('catchScore').innerText = score;
+          items.splice(i, 1);
+
+          if (score >= 10 && !won) {
+            won = true;
+            clearInterval(spawner);
+            document.getElementById('catchWinMsg').innerText = 'তুমি দারুণ খেলো! সব গোলাপ, সব হার্ট, সব ভালোবাসা তোমার আর রাগগুলো সব ডাস্টবিনে! 😉❤️';
+            document.getElementById('catchNextBtn').style.display = 'block';
+            saveAns('ভালোবাসা কুড়ানো গেম', '১০ পয়েন্ট জিতেছে 🌹❤️');
+          }
+        } else if (it.y > canvas.height + 20) {
+          items.splice(i, 1);
+        }
+      }
+      if (!won) requestAnimationFrame(loop);
+    }
+    loop();
+  }
+
+  // Page 9: Starry Heart Connect ("Only for you")
+  let starsTapped = 0;
+  function tapStar(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = "1";
+    el.setAttribute('fill', '#ffffff');
+    el.setAttribute('r', '13');
+    starsTapped++;
+    if (starsTapped >= 6) {
+      document.getElementById('heartFill').setAttribute('fill', 'rgba(255,42,109,0.45)');
+      document.getElementById('heartFill').setAttribute('stroke-width', '3.5');
+      document.getElementById('starResult').innerText = "Only for you ❤️";
+      document.getElementById('starNextBtn').style.display = 'block';
+    } else {
+      document.getElementById('starResult').innerText = `আরও ${6 - starsTapped}টি তারা বাকি আছে ✨`;
+    }
+  }
+
+  // Page 12: GAME 3 - Guide Apurbo to Mehu
+  let playerPos = { r: 0, c: 0 };
+  const goalPos = { r: 4, c: 4 };
+  const obstacles = [
+    { r: 0, c: 2, label: '😡 রাগ' },
+    { r: 1, c: 1, label: '🥺 অভিমান' },
+    { r: 2, c: 3, label: '⏰ ব্যস্ততা' },
+    { r: 3, c: 1, label: '😡 রাগ' },
+    { r: 3, c: 3, label: '🥺 অভিমান' }
+  ];
+  let mazeWon = false;
+
+  function initMazeGame() {
+    playerPos = { r: 0, c: 0 };
+    mazeWon = false;
+    renderMaze();
+  }
+
+  function renderMaze() {
+    const grid = document.getElementById('mazeGrid');
+    grid.innerHTML = '';
+    for (let r = 0; r < 5; r++) {
+      for (let c = 0; c < 5; c++) {
+        const cell = document.createElement('div');
+        cell.className = 'maze-cell';
+        const obs = obstacles.find(o => o.r === r && o.c === c);
+        if (mazeWon && r === goalPos.r && c === goalPos.c) {
+          cell.innerHTML = '<span style="font-size:28px;">❤️</span>';
+          cell.style.background = 'rgba(255,42,109,0.5)';
+        } else if (r === playerPos.r && c === playerPos.c) {
+          cell.innerText = '👦';
+        } else if (r === goalPos.r && c === goalPos.c) {
+          cell.innerText = '👧';
+        } else if (obs) {
+          cell.classList.add('obs');
+          cell.innerText = obs.label;
+        }
+        grid.appendChild(cell);
+      }
+    }
+  }
+
+  function movePlayer(dr, dc) {
+    if (mazeWon) return;
+    const nr = playerPos.r + dr;
+    const nc = playerPos.c + dc;
+    if (nr < 0 || nr > 4 || nc < 0 || nc > 4) return;
+    const hitObs = obstacles.find(o => o.r === nr && o.c === nc);
+    if (hitObs) {
+      document.getElementById('mazeMsg').innerText = `উফ! সামনে "${hitObs.label}" আছে, অন্য পাশ দিয়ে ঘুরিয়ে নাও! 😜`;
+      return;
+    }
+    playerPos = { r: nr, c: nc };
+    document.getElementById('mazeMsg').innerText = '';
+    if (nr === goalPos.r && nc === goalPos.c) {
+      mazeWon = true;
+      document.getElementById('mazeControls').style.display = 'none';
+      document.getElementById('mazeMsg').innerText = 'যতই বাধা আসুক, অপূর্ব ঠিকই মেহুর কাছে পৌঁছে যাবে! ❤️';
+      document.getElementById('mazeNextBtn').style.display = 'block';
+      saveAns('হৃদয়ের পথ গেম', 'সব বাধা পেরিয়ে অপূর্বকে মেহুর কাছে পৌঁছে দিয়েছে ❤️');
+    }
+    renderMaze();
+  }
+
+  // Page 13: Trust Slider
+  function updateTrust(val) {
+    let msg = `বিশ্বাস: ${val}% ❤️`;
+    if (val >= 90) msg = `বিশ্বাস: ${val}% — অপূর্বর প্রতি অগাধ ভালোবাসা! 💖✨`;
+    document.getElementById('trustText').innerText = msg;
+  }
+
+  // Page 14: Open Wax-Sealed Vintage Envelope
+  function openWaxEnvelope() {
+    document.getElementById('envWrapper').style.display = 'none';
+    document.getElementById('openedLetterArea').style.display = 'block';
+  }
+
+  function finishJourney() {
+    const comment = document.getElementById('mehuComment').value.trim() || "কোনো মন্তব্য লেখেনি (শুধু ভালোবাসা পাঠিয়েছে ❤️)";
+    saveAns('মেহুর ফাইনাল কমেন্ট', comment);
+
+    const btn = document.getElementById('doneBtn');
+    btn.innerText = "⏳";
+    btn.disabled = true;
+
+    const fullReport = userAnswers.join('\n');
+
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        access_key: "6557309f-abc4-472e-9341-2bd13a7c0491",
+        subject: "Mehu's Response from Apurbo's World ❤️",
+        from_name: "Mehu",
+        message: fullReport
+      })
+    }).finally(() => {
+      const waText = encodeURIComponent(`হাই অপূর্ব! ❤️ আমি তোমার পুরো সারপ্রাইজটা দেখেছি।\n\nআমার কথা: ${comment}`);
+      window.open(`https://wa.me/8801701390168?text=${waText}`, '_blank');
+      nextPage();
+    });
+  }
+</script>
+</body>
+</html>
